@@ -17,13 +17,11 @@ This organization is home to the following projects, and many more!
                 </a>
             </td>
             <td>
-                <a href="https://github.com/insightsengineering/nest">
                 <img
                     alt="Logo for NEST"
                     src="https://github.com/insightsengineering/hex-stickers/raw/main/thumbs/nest.png"
                     width="139"
                     height="139">
-                </a>
             </td>
             <td>
                 <a href="https://github.com/insightsengineering/rbmi">
