@@ -3,6 +3,10 @@ name: 🐞 Bug Report
 description: File a bug report
 title: "[Bug]: <title>"
 labels: ["bug"]
+assignees:
+  - cicdguy
+  - pawelru
+  - donyunardi
 body:
   - type: markdown
     attributes:

@@ -3,6 +3,10 @@ name: ✨ Feature Request
 description: Request or propose a new feature
 title: "[Feature Request]: <title>"
 labels: ["enhancement"]
+assignees:
+  - cicdguy
+  - pawelru
+  - donyunardi
 body:
   - type: textarea
     attributes:
