@@ -1,4 +1,4 @@
-Individual Contributor License Agreement
+## Individual Contributor License Agreement
 
 Thank you for your interest in contributing to this open source software project (“Project”) made available 
 by under the terms defined in `LICENSE.md`. This Individual Contributor License Agreement (“Agreement”) sets 
