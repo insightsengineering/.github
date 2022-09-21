@@ -1,5 +1,8 @@
 ## Welcome to Insights Engineering 👋
 
+![GitHub followers](https://img.shields.io/github/followers/insightsengineering?style=social&label=Followers)
+![GitHub Org's stars](https://img.shields.io/github/stars/insightsengineering?style=social&label=Org%20Stars)
+
 The Roche/Genentech Insights Engineering organization is home to a variety of projects developed at Roche/Genentech and its wonderful community of collaborators.
 
 This organization is home to the following projects, and many more!
@@ -67,3 +70,4 @@ This organization is home to the following projects, and many more!
 - [Openpharma](https://github.com/openpharma)
 - [Roche](https://github.com/Roche)
 - [Genentech](https://github.com/genentech)
+- [PhUSE](https://github.com/phuse-org/)
