@@ -7,54 +7,58 @@ The Roche/Genentech Insights Engineering organization is home to a variety of pr
 
 This organization is home to the following projects, and many more!
 
-<div align="center" style="text-align: center;">
+<div align="center">
     <table>
-        <tr>
-            <td>
-                <a href="https://github.com/insightsengineering/hermes">
-                <img
-                    alt="Logo for hermes"
-                    src="https://github.com/insightsengineering/hex-stickers/raw/main/thumbs/hermes.png"
-                    style="width:70%;height:auto;">
-                </a>
-            </td>
-            <td>
-                <img
-                    alt="Logo for NEST"
-                    src="https://github.com/insightsengineering/hex-stickers/raw/main/thumbs/nest.png"
-                    style="width:70%;height:auto;">
-            </td>
-            <td>
-                <a href="https://github.com/insightsengineering/rbmi">
-                <img
-                    alt="Logo for RBMI"
-                    src="https://github.com/insightsengineering/hex-stickers/raw/main/thumbs/rbmi.png"
-                    style="width:70%;height:auto;">
-                </a>
-        <tr>
-            <td>
-                <a href="https://github.com/insightsengineering/teal">
-                <img
-                    alt="Logo for teal"
-                    src="https://github.com/insightsengineering/hex-stickers/raw/main/thumbs/teal.png"
-                    style="width:70%;height:auto;">
-                </a>
-            </td>
-            <td>
-                <a href="https://github.com/insightsengineering/tern">
-                <img
-                    alt="Logo for tern"
-                    src="https://github.com/insightsengineering/hex-stickers/raw/main/thumbs/tern.png"
-                    style="width:70%;height:auto;">
-                </a>
-            </td>
-            <td>
-                <img
-                    alt="Logo for chevron"
-                    src="https://github.com/insightsengineering/hex-stickers/raw/main/thumbs/chevron.png"
-                    style="width:70%;height:auto;">
-            </td>
-        </tr>
+        <tbody align="center">
+            <tr>
+                <td>
+                    <a href="https://github.com/insightsengineering/hermes">
+                    <img
+                        alt="Logo for hermes"
+                        src="https://github.com/insightsengineering/hex-stickers/raw/main/thumbs/hermes.png"
+                        style="width:50%;">
+                    </a>
+                </td>
+                <td>
+                    <img
+                        alt="Logo for NEST"
+                        src="https://github.com/insightsengineering/hex-stickers/raw/main/thumbs/nest.png"
+                        style="width:50%;">
+                </td>
+                <td>
+                    <a href="https://github.com/insightsengineering/rbmi">
+                    <img
+                        alt="Logo for RBMI"
+                        src="https://github.com/insightsengineering/hex-stickers/raw/main/thumbs/rbmi.png"
+                        style="width:50%;">
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="https://github.com/insightsengineering/teal">
+                    <img
+                        alt="Logo for teal"
+                        src="https://github.com/insightsengineering/hex-stickers/raw/main/thumbs/teal.png"
+                        style="width:50%;">
+                    </a>
+                </td>
+                <td>
+                    <a href="https://github.com/insightsengineering/tern">
+                    <img
+                        alt="Logo for tern"
+                        src="https://github.com/insightsengineering/hex-stickers/raw/main/thumbs/tern.png"
+                        style="width:50%;">
+                    </a>
+                </td>
+                <td>
+                    <img
+                        alt="Logo for chevron"
+                        src="https://github.com/insightsengineering/hex-stickers/raw/main/thumbs/chevron.png"
+                        style="width:50%;">
+                </td>
+            </tr>
+        </tbody>
     </table>
 </div>
 
