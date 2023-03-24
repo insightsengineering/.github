@@ -15,24 +15,21 @@ This organization is home to the following projects, and many more!
                 <img
                     alt="Logo for hermes"
                     src="https://github.com/insightsengineering/hex-stickers/raw/main/thumbs/hermes.png"
-                    width="139"
-                    height="139">
+                    style="witdh:100%;height:auto;">
                 </a>
             </td>
             <td>
                 <img
                     alt="Logo for NEST"
                     src="https://github.com/insightsengineering/hex-stickers/raw/main/thumbs/nest.png"
-                    width="139"
-                    height="139">
+                    style="witdh:100%;height:auto;">
             </td>
             <td>
                 <a href="https://github.com/insightsengineering/rbmi">
                 <img
                     alt="Logo for RBMI"
                     src="https://github.com/insightsengineering/hex-stickers/raw/main/thumbs/rbmi.png"
-                    width="139"
-                    height="139">
+                    style="witdh:100%;height:auto;">
                 </a>
         <tr>
             <td>
@@ -40,8 +37,7 @@ This organization is home to the following projects, and many more!
                 <img
                     alt="Logo for teal"
                     src="https://github.com/insightsengineering/hex-stickers/raw/main/thumbs/teal.png"
-                    width="139"
-                    height="139">
+                    style="witdh:100%;height:auto;">
                 </a>
             </td>
             <td>
@@ -49,16 +45,14 @@ This organization is home to the following projects, and many more!
                 <img
                     alt="Logo for tern"
                     src="https://github.com/insightsengineering/hex-stickers/raw/main/thumbs/tern.png"
-                    width="139"
-                    height="139">
+                    style="witdh:100%;height:auto;">
                 </a>
             </td>
             <td>
                 <img
                     alt="Logo for chevron"
                     src="https://github.com/insightsengineering/hex-stickers/raw/main/thumbs/chevron.png"
-                    width="139"
-                    height="139">
+                    style="witdh:100%;height:auto;">
             </td>
         </tr>
     </table>
