@@ -7,8 +7,8 @@ The Roche/Genentech Insights Engineering organization is home to a variety of pr
 
 This organization is home to the following projects, and many more!
 
-<div align="center">
-    <table style="text-align:center;">
+<div align="center" style="text-align: center;">
+    <table>
         <tr>
             <td>
                 <a href="https://github.com/insightsengineering/hermes">
