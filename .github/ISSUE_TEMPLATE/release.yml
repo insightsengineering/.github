@@ -101,9 +101,10 @@ body:
     attributes:
       value: |
         Click on 'Details' below to see the decision tree:
+
         <summary><details>
+
         ```mermaid
-        %%| fig-width: 6
         flowchart TB
         A[A package is scheduled for tagging] ---> B
             B{<br>Does it have</br>additional fields?</br>}
@@ -125,4 +126,3 @@ body:
             G1 --->G2
         ```
         </details></summary>
-

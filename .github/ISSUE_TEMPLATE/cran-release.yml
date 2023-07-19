@@ -35,7 +35,7 @@ body:
       description: Pre-requisites that must be fulfilled before initiating the release process.
       placeholder: Add your list of pre-requisites here.
       value: |
-        - [ ] Make sure that high priority bugs (label "priority" + "bug") have been resolved before going into the release. 
+        - [ ] Make sure that high priority bugs (label "priority" + "bug") have been resolved before going into the release.
         - [ ] Review old/hanging PRs before going into the release (Optional).
         - [ ] Revisit R-package's lifecycle badges (Optional).
         - [ ] Make sure that all upstream dependencies of this package that need to be submitted to CRAN were accepted before going into release activities.
@@ -53,7 +53,7 @@ body:
         - [ ] Increase versioned dependency on {package name} to >=X.X.X (Optional).
         - [ ] Make sure that the minimum dependency versions are updated in the DESCRIPTION file for the package and its reverse dependencies (Optional).
         - [ ] Create a pull request to make necessary bug fixes/changes (add "[skip vbump]" in the pr title), and after merging the PR, tag the update(s) as a release candidate v < intended release version > -rc < release candidate iteration > on the main branch.
-        - [ ] Build the package locally using the command:`R CMD build .` which will generate a .tar.gz file necessary for the CRAN submission.  
+        - [ ] Build the package locally using the command:`R CMD build .` which will generate a .tar.gz file necessary for the CRAN submission.
         - [ ] Submit the package that was build in the previous step via this form: https://cran.r-project.org/submit.html.
         - [ ] Address CRAN feedback, tag the package vX.X.X-rc(n+1) and repeat the submission to CRAN whenever necessary.
         - [ ] Get the package accepted and published on CRAN.
@@ -72,7 +72,7 @@ body:
   - type: textarea
     id: feedback
     attributes:
-      label: Release Feedback 
+      label: Release Feedback
       description: Feedback received from CRAN/testers.
       placeholder: Feedback to be implemented after CRAN submission/testing.
       value: |
@@ -89,15 +89,16 @@ body:
         - [ ] Make sure that the package is published to internal repositories.
         - [ ] Review and update installation instructions for the package wherever needed (Optional).
         - [ ] Update all integration tests to reference the new release.
-        - [ ] Ensure a new dev version (.9XXX) is added to the NEWS.md file and DESCRIPTION file as a placeholder for release notes. 
+        - [ ] Ensure a new dev version (.9XXX) is added to the NEWS.md file and DESCRIPTION file as a placeholder for release notes.
         - [ ] Announce the release on ________.
   - type: markdown
     attributes:
       value: |
         Click on 'Details' below to see the decision tree:
+
         <summary><details>
+
         ```mermaid
-        %%| fig-width: 6
         flowchart TB
         A[A package is scheduled for tagging] ---> B
             B{<br>Does it have</br>additional fields?</br>}
