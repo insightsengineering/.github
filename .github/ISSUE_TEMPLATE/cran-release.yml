@@ -91,8 +91,12 @@ body:
         - [ ] Update all integration tests to reference the new release.
         - [ ] Ensure a new dev version (.9XXX) is added to the NEWS.md file and DESCRIPTION file as a placeholder for release notes.
         - [ ] Announce the release on ________.
-  - type: markdown
+  - type: textarea
+    id: decision-tree
     attributes:
+      label: Decision tree
+      description: Any decision tree(s) that would aid release management
+      placeholder: Any decision tree(s) that would aid release management.
       value: |
         Click on 'Details' below to see the decision tree:
 
@@ -107,7 +111,7 @@ body:
             C1 ---> C2
             C2 ---> D
                 subgraph D [Release feedback loop]
-                X1[Submit package vX.X.X-rcX to Autovalidate R/to CRAN]
+                X1[Submit package vX.X.X-rcX for internal validation/to CRAN]
                 X1 --->X2[The package is being processed]
                 X2 --->X3{Any feedback?}
                 X3 --->|Yes| Y1[Address the feedback]

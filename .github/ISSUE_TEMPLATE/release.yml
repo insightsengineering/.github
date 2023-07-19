@@ -97,8 +97,12 @@ body:
         - [ ] Make sure internal documentation/documentation catalogs are up to date.
         - [ ] Notify the IDR team to start post-release/clean-up activities.
         - [ ] Announce the release on ________.
-  - type: markdown
+  - type: textarea
+    id: decision-tree
     attributes:
+      label: Decision tree
+      description: Any decision tree(s) that would aid release management
+      placeholder: Any decision tree(s) that would aid release management.
       value: |
         Click on 'Details' below to see the decision tree:
 
