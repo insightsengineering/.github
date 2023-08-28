@@ -39,6 +39,7 @@ body:
         - [ ] Revisit R-package's lifecycle badges (Optional).
         - [ ] Discuss package dependencies before going into release activities.
         - [ ] Create a plan to sequentially close release activities and submit groups of packages for internal validation (Applicable only for regulatory release).
+        - [ ] Check Autovalidate R dry-run results for a package.
         - [ ] Make sure all relevant integration tests are green 2-3 days before the release. Look carefully through logs (check for warnings and notes).
         - [ ] Check if a package is installable on our supported internal systems (Optional).
         - [ ] Inform about the soft code freeze, decide what gets merged in before starting release activities.
@@ -51,6 +52,7 @@ body:
       value: |
         - [ ] Recurring tasks: Execute the manual tests on Shiny apps that are deployed on various hosting providers (Posit connect and shinyapps.io) - track the results in GitHub issue (Applicable only for frameworks that use Shiny).
         - [ ] Recurring tasks: Monitor integration tests, if integration fails, create priority issues on the board.
+        - [ ] Make sure that CI checks are passing in GH before releasing a package.
         - [ ] Sanity checks for Shiny applications e.g. checking if Shiny apps are deployable and making sure there are no errors/warnings.
         - [ ] Update NEWS.md file: make sure it reflects a holistic summary of what has changed in the package, check README.
         - [ ] Remove the additional fields (`Remotes` and `Config/Needs/*`) from the DESCRIPTION file where applicable.
@@ -70,7 +72,7 @@ body:
       description: Summary of testing activities - integration tests, UAT, other.
       placeholder: Tests results
       value: |
-        - [ ] Integration tests results - accepted.
+        - [ ] Integration tests results - accepted (OCEAN/Autovalidate R).
         - [ ] UAT results - accepted.
         - [ ] Shiny apps test results - accepted (Applicable only for Shiny apps).
         - [ ] Necessary testing on target environment - performed (up to ETL).
