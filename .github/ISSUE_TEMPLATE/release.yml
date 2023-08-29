@@ -39,7 +39,7 @@ body:
         - [ ] Revisit R-package's lifecycle badges (Optional).
         - [ ] Discuss package dependencies before going into release activities.
         - [ ] Create a plan to sequentially close release activities and submit groups of packages for internal validation (Applicable only for regulatory release).
-        - [ ] Check Autovalidate R dry-run results for a package.
+        - [ ] Check Validation Pipeline dry-run results for the package.
         - [ ] Make sure all relevant integration tests are green 2-3 days before the release. Look carefully through logs (check for warnings and notes).
         - [ ] Check if a package is installable on our supported internal systems (Optional).
         - [ ] Inform about the soft code freeze, decide what gets merged in before starting release activities.
