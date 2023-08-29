@@ -72,7 +72,7 @@ body:
       description: Summary of testing activities - integration tests, UAT, other.
       placeholder: Tests results
       value: |
-        - [ ] Integration tests results - accepted (OCEAN/Autovalidate R).
+        - [ ] Integration tests results - accepted (Internal Compute Environments/Validation Pipelines).
         - [ ] UAT results - accepted.
         - [ ] Shiny apps test results - accepted (Applicable only for Shiny apps).
         - [ ] Necessary testing on target environment - performed (up to ETL).
