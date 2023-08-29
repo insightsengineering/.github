@@ -52,7 +52,7 @@ body:
       value: |
         - [ ] Recurring tasks: Execute the manual tests on Shiny apps that are deployed on various hosting providers (Posit connect and shinyapps.io) - track the results in GitHub issue (Applicable only for frameworks that use Shiny).
         - [ ] Recurring tasks: Monitor integration tests, if integration fails, create priority issues on the board.
-        - [ ] Make sure that CI checks are passing in GH before releasing a package.
+        - [ ] Make sure that CI checks are passing in GH before releasing the package.
         - [ ] Sanity checks for Shiny applications e.g. checking if Shiny apps are deployable and making sure there are no errors/warnings.
         - [ ] Update NEWS.md file: make sure it reflects a holistic summary of what has changed in the package, check README.
         - [ ] Remove the additional fields (`Remotes` and `Config/Needs/*`) from the DESCRIPTION file where applicable.
