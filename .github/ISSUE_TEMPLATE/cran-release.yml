@@ -49,10 +49,10 @@ body:
       placeholder: Steps to create a release.
       value: |
         - [ ] Update NEWS.md file: make sure it reflects a holistic summary of what has changed in the package.
-        - [ ] Remove the additional fields (`Remotes` and `Config/Needs/*`) from the DESCRIPTION file where applicable.
+        - [ ] Remove the additional fields (`Remotes`) from the DESCRIPTION file where applicable.
         - [ ] Increase versioned dependency on {package name} to >=X.X.X (Optional).
         - [ ] Make sure that the minimum dependency versions are updated in the DESCRIPTION file for the package and its reverse dependencies (Optional).
-        - [ ] Create a pull request to make necessary bug fixes/changes (add "[skip vbump]" in the pr title), and after merging the PR, tag the update(s) as a release candidate v < intended release version > -rc < release candidate iteration > on the main branch.
+        - [ ] Create a pull request to make necessary bug fixes/changes (add "[skip vbump]" in the pr title), tag the update(s) as a release candidate v < intended release version > -rc < release candidate iteration > on the main branch.
         - [ ] Build the package locally using the command:`R CMD build .` which will generate a .tar.gz file necessary for the CRAN submission.
         - [ ] Submit the package that was build in the previous step via this form: https://cran.r-project.org/submit.html.
         - [ ] Address CRAN feedback, tag the package vX.X.X-rc(n+1) and repeat the submission to CRAN whenever necessary.
@@ -66,19 +66,7 @@ body:
       description: Summary of testing activities - integration tests, UAT, other
       placeholder: Tests results
       value: |
-        - [ ] Integration tests results - accepted.
-        - [ ] UAT results - accepted.
-        - [ ] All testing activities are finalized.
-  - type: textarea
-    id: feedback
-    attributes:
-      label: Release Feedback
-      description: Feedback received from CRAN/testers.
-      placeholder: Feedback to be implemented after CRAN submission/testing.
-      value: |
-        - [ ] Fix 1
-        - [ ] Enhancement 1
-        - [ ] Defect 1
+        - [ ] All testing activities have been completed successfully.
   - type: textarea
     id: post-release
     attributes:
@@ -86,6 +74,7 @@ body:
       description: The list of activities to be completed after the release.
       placeholder: The steps that must be taken after the release.
       value: |
+        - [ ] Ensure that CRAN checks are passing for the package.
         - [ ] Make sure that the package is published to internal repositories.
         - [ ] Review and update installation instructions for the package wherever needed (Optional).
         - [ ] Update all integration tests to reference the new release.
