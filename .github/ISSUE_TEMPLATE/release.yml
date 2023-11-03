@@ -58,12 +58,32 @@ body:
         - [ ] Remove the additional fields (`Remotes` and `Config/Needs/*`) from the DESCRIPTION file where applicable.
         - [ ] Make sure that the minimum dependency versions are updated in the DESCRIPTION file for the package.
           - [ ] Increase versioned dependency on {package name} to >=X.X.X.
-        - [ ] Create a pull request to make necessary bug fixes/changes (add "[skip vbump]" in the PR title), and after merging the PR, tag the update(s) as a release candidate v < intended release version > -rc < release candidate iteration > on the main branch. Note that tags are created in GitHub and synchronized with GitLab automatically.
+        - [ ] Commit your changes and create the PR on GitHub (add "[skip vbump]" in the PR title). Add all updates, commit, and push changes:
+          # Create a new release candidate branch 
+          git checkout -b release-candidate-vX.Y.Z
+          # Make the necessary modifications to your files
+          # Stage the changes
+          git add <files your modified>
+          # Commit the changes
+          git commit -m "[skip vbump] <Your commit message>"
+          git push origin release-candidate-vX.Y.Z
+        - [ ] Tag the update(s) as a release candidate vX.Y.Z-rc<iteration-number> (e.g. v0.5.3-rc1) on the release candidate branch (release-candidate-vX.Y.Z).
+          # Create rc tag for submission for internal validation
+          git tag vX.Y.Z-rc<iteration number>
+          git push origin vX.Y.Z-rc<iteration number>
         - [ ] The package is submitted for internal validation by Release Coordinator (Applicable only for regulatory release).
         - [ ] Address any feedback (internal validation/user testing), retag the package as a release candidate vX.X.X-rc(n+1). Repeat the submission for internal validation if necessary.
         - [ ] Get the package validated (Applicable only for regulatory release).
         - [ ] If the additional fields were removed, add them back in a separate PR, and then merge the PR back to main (add "[skip vbump]" in the PR title).
-        - [ ] Create a git tag with the final version set to X.X.X on the main branch.
+        - [ ] Create a git tag with the final version set to vX.Y.Z on the main branch. In order to do this:
+          1. Merge the release-candidate-vX.Y.Z branch into main.
+          2. Note the commit hash of the merged commit. Note that additional commits might be added to the main branch by a bot or an automation - we do NOT want to tag this commit.
+          3. Checkout the commit hash.
+          git checkout <commit hash>
+          4. Tag the hash with the release version (vX.Y.Z).
+          git tag vX.Y.Z
+          5. Push the tag to make the final release.
+          git push origin vX.Y.Z
         - [ ] Update downstream package dependencies to (>=X.X.X) in {package name}.
   - type: textarea
     id: testing
