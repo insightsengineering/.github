@@ -48,6 +48,7 @@ body:
       description: The steps to be taken in order to create a release.
       placeholder: Steps to create a release.
       value: |
+        - [ ] Make sure that CI checks are passing in GH before releasing he package.
         - [ ] Update NEWS.md file: make sure it reflects a holistic summary of what has changed in the package.
         - [ ] Remove the additional fields (`Remotes`) from the DESCRIPTION file where applicable.
         - [ ] Increase versioned dependency on {package name} to >=X.X.X (Optional).
@@ -96,6 +97,7 @@ body:
       value: |
         - [ ] Ensure that CRAN checks are passing for the package.
         - [ ] Make sure that the package is published to internal repositories.
+        - [ ] Make sure internal documentation is up to date.
         - [ ] Review and update installation instructions for the package wherever needed (Optional).
         - [ ] Update all integration tests to reference the new release.
         - [ ] Ensure a new dev version (.9XXX) is added to the NEWS.md file and DESCRIPTION file as a placeholder for release notes.
