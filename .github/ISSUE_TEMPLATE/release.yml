@@ -74,7 +74,7 @@ body:
         - [ ] The package is submitted for internal validation by Release Coordinator (Applicable only for regulatory release).
         - [ ] Address any feedback (internal validation/user testing), retag the package as a release candidate vX.X.X-rc(n+1). Repeat the submission for internal validation if necessary.
         - [ ] Get the package validated (Applicable only for regulatory release).
-        - [ ] If the additional fields were removed, add them back in a separate PR, and then merge the PR back to main (add "[skip vbump]" in the PR title).
+        - [ ] If the additional fields were removed, add them back in a separate PR, and then merge the PR back to main (add "[skip vbump]" in the PR title). If nothing was removed just merge the PR you created at the beginning of this section.
         - [ ] Create a git tag with the final version set to vX.Y.Z on the main branch. In order to do this:
           1. Merge the release-candidate-vX.Y.Z branch into main.
           2. Note the commit hash of the merged commit. Note that additional commits might be added to the main branch by a bot or an automation - we do NOT want to tag this commit.
