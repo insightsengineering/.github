@@ -95,11 +95,11 @@ body:
           1. Merge the release-candidate-vX.Y.Z branch into main.
           2. Note the commit hash of the merged commit. Note that additional commits might be added to the main branch by a bot or an automation - we do NOT want to tag this commit.
           3. Checkout the commit hash.
-          git checkout <commit hash>
+          `git checkout <commit hash>`
           4. Tag the hash with the release version (vX.Y.Z).
-          git tag vX.Y.Z
+          `git tag vX.Y.Z`
           5. Push the tag to make the final release.
-          git push origin vX.Y.Z
+          `git push origin vX.Y.Z`
         - [ ] Update downstream package dependencies to (>=X.Y.Z) in {package name}.
         Note: Once the release tag is created, the package is automatically published to internal repositories.
   - type: textarea
