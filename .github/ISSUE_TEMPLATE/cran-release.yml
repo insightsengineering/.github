@@ -78,7 +78,7 @@ body:
           git tag vX.Y.Z-rc<iteration number>
           git push origin vX.Y.Z-rc<iteration number>`
           [ ] Build the package locally using the command:`R CMD build .` which will generate a .tar.gz file necessary for the CRAN submission.
-        - [ ] Submit the package that was build in the previous step via this form: https://cran.r-project.org/submit.html.
+        - [ ] Submit the package that was built in the previous step via this form: https://cran.r-project.org/submit.html.
         - [ ] Address CRAN feedback, tag the package vX.Y.Z-rc(n+1) and repeat the submission to CRAN whenever necessary.
         - [ ] Get the package accepted and published on CRAN.
 
@@ -100,6 +100,8 @@ body:
           `git tag vX.Y.Z`
           5. Push the tag to make the final release.
           `git push origin vX.Y.Z`
+        - [ ] Update downstream package dependencies to (>=X.Y.Z) in {package name}.
+        Note: Once the release tag is created, the package is automatically published to internal repositories.
   - type: textarea
     id: post-release
     attributes:
