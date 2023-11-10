@@ -49,6 +49,7 @@ body:
       placeholder: Steps to create a release.
       value: |
         ### Prepare the release
+        
         - [ ] Create a new release candidate branch 
         `git checkout -b release-candidate-vX.Y.Z`
         - [ ] Update NEWS.md file: make sure it reflects a holistic summary of what has changed in the package, check README.
