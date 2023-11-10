@@ -37,8 +37,7 @@ body:
         - [ ] Make sure that high priority bugs (label "priority" + "bug") have been resolved before going into the release.
         - [ ] Review old/hanging PRs before going into the release.
         - [ ] Revisit R-package's lifecycle badges (Optional).
-        - [ ] Discuss package dependencies before going into release activities.
-        - [ ] Release Manager: Create a plan to sequentially close release activities and submit groups of packages for internal validation (Applicable only for regulatory release).
+        - [ ] Release Manager: Discuss package dependencies, create a plan to sequentially close release activities and submit groups of packages for internal validation (Applicable only for regulatory release).
         - [ ] Check Validation Pipeline dry-run results for the package.
         - [ ] Make sure all relevant integration tests are green 2-3 days before the release. Look carefully through logs (check for warnings and notes).
         - [ ] Inform about the soft code freeze, decide what gets merged in before starting release activities.
@@ -71,14 +70,16 @@ body:
         - [ ] Execute UAT tests (Optional).
 
         ### Validation loop
+
+        Note: This section is applicable only for regulatory packages.
         
         - [ ] Tag the update(s) as a release candidate vX.Y.Z-rc<iteration-number> (e.g. v0.5.3-rc1) on the release candidate branch (release-candidate-vX.Y.Z).
-          # Create rc tag for submission for internal validation
+          `# Create rc tag for submission for internal validation
           git tag vX.Y.Z-rc<iteration number>
-          git push origin vX.Y.Z-rc<iteration number>
-        - [ ] Submit the package for internal validation (Applicable only for regulatory release).
+          git push origin vX.Y.Z-rc<iteration number>`
+        - [ ] Submit the package for internal validation.
         - [ ] Address any feedback (internal validation/user testing), retag the package as a release candidate vX.Y.Z-rc(n+1). Repeat the submission for internal validation if necessary.
-        - [ ] Get the package validated (Applicable only for regulatory release).
+        - [ ] Get the package validated.
         
         ### Tag the release
 
@@ -99,6 +100,7 @@ body:
           5. Push the tag to make the final release.
           git push origin vX.Y.Z
         - [ ] Update downstream package dependencies to (>=X.Y.Z) in {package name}.
+        Note: Once the release tag is created, the package is automatically published to internal repositories.
   - type: textarea
     id: post-release
     attributes:
