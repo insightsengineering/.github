@@ -29,12 +29,13 @@ body:
     validations:
       required: true
   - type: textarea
-    id: pre-requisites
+    id: pre-release
     attributes:
-      label: Pre-requisites
+      label: Pre-release
       description: Pre-requisites that must be fulfilled before initiating the release process.
       placeholder: Add your list of pre-requisites here.
       value: |
+        - [ ] Make sure you adhere to CRAN submission policy: https://cran.r-project.org/web/packages/submission_checklist.html; https://cran.r-project.org/web/packages/policies.html 
         - [ ] Make sure that high priority bugs (label "priority" + "bug") have been resolved before going into the release.
         - [ ] Review old/hanging PRs before going into the release (Optional).
         - [ ] Revisit R-package's lifecycle badges (Optional).
@@ -42,56 +43,67 @@ body:
         - [ ] Make sure integration tests are green 2-3 days before the release. Look carefully through logs (check for warnings and notes).
         - [ ] Decide what gets merged in before starting release activities.
   - type: textarea
-    id: release-checklist
+    id: release
     attributes:
-      label: Release Checklist
+      label: Release
       description: The steps to be taken in order to create a release.
       placeholder: Steps to create a release.
       value: |
-        - [ ] Make sure that CI checks are passing in GH before releasing the package.
+        ### Prepare the release
+        
+        - [ ] Create a new release candidate branch 
+          `git checkout -b release-candidate-vX.Y.Z`
         - [ ] Update NEWS.md file: make sure it reflects a holistic summary of what has changed in the package.
         - [ ] Remove the additional fields (`Remotes`) from the DESCRIPTION file where applicable.
-        - [ ] Increase versioned dependency on {package name} to >=X.X.X (Optional).
         - [ ] Make sure that the minimum dependency versions are updated in the DESCRIPTION file for the package and its reverse dependencies (Optional).
+          - [ ] Increase versioned dependency on {package name} to >=X.Y.Z (Optional).
         - [ ] Commit your changes and create the PR on GitHub (add "[skip vbump]" in the PR title). Add all updates, commit, and push changes:
-          # Create a new release candidate branch 
-          git checkout -b release-candidate-vX.Y.Z
-          # Make the necessary modifications to your files
+          `# Make the necessary modifications to your files
           # Stage the changes
           git add <files your modified>
           # Commit the changes
           git commit -m "[skip vbump] <Your commit message>"
-          git push origin release-candidate-vX.Y.Z
+          git push origin release-candidate-vX.Y.Z`
+
+          ### Test the release
+
+        - [ ] Execute the manual tests on Shiny apps that are deployed on various hosting providers (Posit connect and shinyapps.io) - track the results in GitHub issue (Applicable only for frameworks that use Shiny).
+        - [ ] Monitor integration tests, if integration fails, create priority issues on the board.
+        - [ ] Execute UAT tests (Optional).
+
+        ### CRAN submission
+
         - [ ] Tag the update(s) as a release candidate vX.Y.Z-rc<iteration-number> (e.g. v0.5.3-rc1) on the release candidate branch (release-candidate-vX.Y.Z).
-          # Create rc tag for submission for internal validation
+          `# Create rc tag for submission for internal validation
           git tag vX.Y.Z-rc<iteration number>
-          git push origin vX.Y.Z-rc<iteration number>
-        - [ ] Build the package locally using the command:`R CMD build .` which will generate a .tar.gz file necessary for the CRAN submission.
+          git push origin vX.Y.Z-rc<iteration number>`
+          [ ] Build the package locally using the command:`R CMD build .` which will generate a .tar.gz file necessary for the CRAN submission.
         - [ ] Submit the package that was build in the previous step via this form: https://cran.r-project.org/submit.html.
-        - [ ] Address CRAN feedback, tag the package vX.X.X-rc(n+1) and repeat the submission to CRAN whenever necessary.
+        - [ ] Address CRAN feedback, tag the package vX.Y.Z-rc(n+1) and repeat the submission to CRAN whenever necessary.
         - [ ] Get the package accepted and published on CRAN.
-        - [ ] If the additional fields were removed, add them back in a separate PR, and then merge the PR back to main (add "[skip vbump]" in the PR title). If nothing was removed just merge the PR you created at the beginning of this section.
+
+        ### Tag the release
+          
+        - [ ] If the additional fields were removed, add them back in a separate PR, and then merge the PR back to main (add "[skip vbump]" in the PR title). If nothing was removed just merge the PR you created in the “Prepare the release” section.
+       
+        ### Make sure of the following before continuing
+        
+        - [ ] CI checks are passing in GH before releasing the package.
+        - [ ] Shiny apps are deployable and there are no errors/warnings (Applicable only for frameworks that use Shiny).
+        
         - [ ] Create a git tag with the final version set to vX.Y.Z on the main branch. In order to do this:
           1. Merge the release-candidate-vX.Y.Z branch into main.
           2. Note the commit hash of the merged commit. Note that additional commits might be added to the main branch by a bot or an automation - we do NOT want to tag this commit.
           3. Checkout the commit hash.
-          git checkout <commit hash>
+          `git checkout <commit hash>`
           4. Tag the hash with the release version (vX.Y.Z).
-          git tag vX.Y.Z
+          `git tag vX.Y.Z`
           5. Push the tag to make the final release.
-          git push origin vX.Y.Z
-  - type: textarea
-    id: testing
-    attributes:
-      label: Testing
-      description: Summary of testing activities - integration tests, UAT, other
-      placeholder: Tests results
-      value: |
-        - [ ] All testing activities have been completed successfully.
+          `git push origin vX.Y.Z`
   - type: textarea
     id: post-release
     attributes:
-      label: Post-release Checklist
+      label: Post-release
       description: The list of activities to be completed after the release.
       placeholder: The steps that must be taken after the release.
       value: |
@@ -100,7 +112,6 @@ body:
         - [ ] Make sure internal documentation is up to date.
         - [ ] Review and update installation instructions for the package wherever needed (Optional).
         - [ ] Update all integration tests to reference the new release.
-        - [ ] Ensure a new dev version (.9XXX) is added to the NEWS.md file and DESCRIPTION file as a placeholder for release notes.
         - [ ] Announce the release on ________.
   - type: textarea
     id: decision-tree
