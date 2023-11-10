@@ -55,7 +55,7 @@ body:
         - [ ] Update NEWS.md file: make sure it reflects a holistic summary of what has changed in the package, check README.
         - [ ] Remove the additional fields (`Remotes`) from the DESCRIPTION file where applicable.
         - [ ] Make sure that the minimum dependency versions are updated in the DESCRIPTION file for the package.
-          - [ ] Increase versioned dependency on {package name} to >=X.X.X.
+          - [ ] Increase versioned dependency on {package name} to >=X.Y.Z.
         - [ ] Commit your changes and create the PR on GitHub (add "[skip vbump]" in the PR title). Add all updates, commit, and push changes:
         `# Make the necessary modifications to your files
         # Stage the changes
@@ -77,7 +77,7 @@ body:
           git tag vX.Y.Z-rc<iteration number>
           git push origin vX.Y.Z-rc<iteration number>
         - [ ] Submit the package for internal validation (Applicable only for regulatory release).
-        - [ ] Address any feedback (internal validation/user testing), retag the package as a release candidate vX.X.X-rc(n+1). Repeat the submission for internal validation if necessary.
+        - [ ] Address any feedback (internal validation/user testing), retag the package as a release candidate vX.Y.Z-rc(n+1). Repeat the submission for internal validation if necessary.
         - [ ] Get the package validated (Applicable only for regulatory release).
         
         ### Tag the release
@@ -98,7 +98,7 @@ body:
           git tag vX.Y.Z
           5. Push the tag to make the final release.
           git push origin vX.Y.Z
-        - [ ] Update downstream package dependencies to (>=X.X.X) in {package name}.
+        - [ ] Update downstream package dependencies to (>=X.Y.Z) in {package name}.
   - type: textarea
     id: post-release
     attributes:
