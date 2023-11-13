@@ -35,7 +35,7 @@ body:
       description: Pre-requisites that must be fulfilled before initiating the release process.
       placeholder: Add your list of pre-requisites here.
       value: |
-        - [ ] Make sure you adhere to CRAN submission policy: https://cran.r-project.org/web/packages/submission_checklist.html; https://cran.r-project.org/web/packages/policies.html 
+        - [ ] Make sure you adhere to CRAN submission policy: https://cran.r-project.org/web/packages/submission_checklist.html; https://cran.r-project.org/web/packages/policies.html. 
         - [ ] Make sure that high priority bugs (label "priority" + "bug") have been resolved before going into the release.
         - [ ] Review old/hanging PRs before going into the release (Optional).
         - [ ] Revisit R-package's lifecycle badges (Optional).
