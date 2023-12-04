@@ -79,7 +79,7 @@ body:
           git push origin vX.Y.Z-rc<iteration number>`
         - [ ] Build the package locally using the command:`R CMD build .` which will generate a .tar.gz file necessary for the CRAN submission.
         - [ ] Submit the package to https://win-builder.r-project.org/upload.aspx for testing, for more details please see "Building and checking R source packages for Windows": https://win-builder.r-project.org/.
-        - [ ] Submit the package that was built in the previous step to CRAN via this form: https://cran.r-project.org/submit.html.
+        - [ ] Once tested, send the package that was built in the previous steps to CRAN via this form: https://cran.r-project.org/submit.html.
         - [ ] Address CRAN feedback, tag the package vX.Y.Z-rc(n+1) and repeat the submission to CRAN whenever necessary.
         - [ ] Get the package accepted and published on CRAN.
 
