@@ -35,7 +35,7 @@ body:
       description: Pre-requisites that must be fulfilled before initiating the release process.
       placeholder: Add your list of pre-requisites here.
       value: |
-        - [ ] Make sure you adhere to CRAN submission policy: https://cran.r-project.org/web/packages/submission_checklist.html; https://cran.r-project.org/web/packages/policies.html. 
+        - [ ] Make sure you adhere to CRAN submission policy: https://cran.r-project.org/web/packages/submission_checklist.html; https://cran.r-project.org/web/packages/policies.html.
         - [ ] Make sure that high priority bugs (label "priority" + "bug") have been resolved before going into the release.
         - [ ] Review old/hanging PRs before going into the release (Optional).
         - [ ] Revisit R-package's lifecycle badges (Optional).
@@ -50,8 +50,8 @@ body:
       placeholder: Steps to create a release.
       value: |
         ### Prepare the release
-        
-        - [ ] Create a new release candidate branch 
+
+        - [ ] Create a new release candidate branch
           `git checkout -b release-candidate-vX.Y.Z`
         - [ ] Update NEWS.md file: make sure it reflects a holistic summary of what has changed in the package.
         - [ ] Remove the additional fields (`Remotes`) from the DESCRIPTION file where applicable.
@@ -65,7 +65,7 @@ body:
           git commit -m "[skip vbump] <Your commit message>"
           git push origin release-candidate-vX.Y.Z`
 
-          ### Test the release
+        ### Test the release
 
         - [ ] Execute the manual tests on Shiny apps that are deployed on various hosting providers (Posit connect and shinyapps.io) - track the results in GitHub issue (Applicable only for frameworks that use Shiny).
         - [ ] Monitor integration tests, if integration fails, create priority issues on the board.
@@ -84,14 +84,14 @@ body:
         - [ ] Get the package accepted and published on CRAN.
 
         ### Tag the release
-          
-        - [ ] If the additional fields were removed, add them back in a separate PR, and then merge the PR back to main (add "[skip vbump]" in the PR title). If nothing was removed just merge the PR you created in the “Prepare the release” section to `main'. Note the commit hash of the merged commit. **Note:** additional commits might be added to the `main` branch by a bot or an automation - we do **NOT** want to tag this commit. 
-       
+
+        - [ ] If the additional fields were removed, add them back in a separate PR, and then merge the PR back to main (add "[skip vbump]" in the PR title). If nothing was removed just merge the PR you created in the "Prepare the release" section to 'main'. Note the commit hash of the merged commit. **Note:** additional commits might be added to the `main` branch by a bot or an automation - we do **NOT** want to tag this commit.
+
         ### Make sure of the following before continuing
-        
+
         - [ ] CI checks are passing in GH before releasing the package.
         - [ ] Shiny apps are deployable and there are no errors/warnings (Applicable only for frameworks that use Shiny).
-        
+
         - [ ] Create a git tag with the final version set to vX.Y.Z on the main branch. In order to do this:
           1. Checkout the commit hash.
           `git checkout <commit hash>`
