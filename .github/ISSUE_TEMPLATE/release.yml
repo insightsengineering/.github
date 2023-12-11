@@ -49,23 +49,23 @@ body:
       placeholder: Steps to create a release.
       value: |
         ### Prepare the release
-        
-        - [ ] Create a new release candidate branch 
+
+        - [ ] Create a new release candidate branch
         `git checkout -b release-candidate-vX.Y.Z`
         - [ ] Update NEWS.md file: make sure it reflects a holistic summary of what has changed in the package, check README.
         - [ ] Remove the additional fields (`Remotes`) from the DESCRIPTION file where applicable.
         - [ ] Make sure that the minimum dependency versions are updated in the DESCRIPTION file for the package.
-          - [ ] Increase versioned dependency on {package name} to >=X.Y.Z.
+        - [ ] Increase versioned dependency on {package name} to >=X.Y.Z.
         - [ ] Commit your changes and create the PR on GitHub (add "[skip vbump]" in the PR title). Add all updates, commit, and push changes:
         `# Make the necessary modifications to your files
         # Stage the changes
-        git add <files your modified>`
+        git add <files your modified>
         # Commit the changes
         git commit -m "[skip vbump] <Your commit message>"
         git push origin release-candidate-vX.Y.Z`
 
         ### Test the release
-        
+
         - [ ] Execute the manual tests on Shiny apps that are deployed on various hosting providers (Posit connect and shinyapps.io) - track the results in GitHub issue (Applicable only for frameworks that use Shiny).
         - [ ] Monitor integration tests, if integration fails, create priority issues on the board.
         - [ ] Execute UAT tests (Optional).
@@ -73,7 +73,7 @@ body:
         ### Validation loop
 
         Note: This section is applicable only for regulatory packages.
-        
+
         - [ ] Tag the update(s) as a release candidate vX.Y.Z-rc<iteration-number> (e.g. v0.5.3-rc1) on the release candidate branch (release-candidate-vX.Y.Z).
           `# Create rc tag for submission for internal validation
           git tag vX.Y.Z-rc<iteration number>
@@ -81,16 +81,16 @@ body:
         - [ ] Submit the package for internal validation.
         - [ ] Address any feedback (internal validation/user testing), retag the package as a release candidate vX.Y.Z-rc(n+1). Repeat the submission for internal validation if necessary.
         - [ ] Get the package validated.
-        
+
         ### Tag the release
 
-        - [ ] If the additional fields were removed, add them back in a separate PR, and then merge the PR back to main (add "[skip vbump]" in the PR title). If nothing was removed just merge the PR you created in the "Prepare the release" section to `main`. Note the commit hash of the merged commit. **Note:** additional commits might be added to the `main` branch by a bot or an automation - we do **NOT** want to tag this commit. 
+        - [ ] If the additional fields were removed, add them back in a separate PR, and then merge the PR back to main (add "[skip vbump]" in the PR title). If nothing was removed just merge the PR you created in the "Prepare the release" section to `main`. Note the commit hash of the merged commit. **Note:** additional commits might be added to the `main` branch by a bot or an automation - we do **NOT** want to tag this commit.
 
         #### Make sure of the following before continuing with the release:
-        
+
         - [ ] CI checks are passing in GH.
         - [ ] Shiny apps are deployable and there are no errors/warnings (Applicable only for frameworks that use Shiny).
-       
+
         - [ ] Create a git tag with the final version set to vX.Y.Z on the main branch. In order to do this:
           1. Checkout the commit hash.
           `git checkout <commit hash>`
