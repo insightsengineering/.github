@@ -6,7 +6,6 @@ labels: ["release"]
 assignees:
   - KlaudiaBB
   - cicdguy
-  - shajoezhu
 body:
   - type: markdown
     attributes:
