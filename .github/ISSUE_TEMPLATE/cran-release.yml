@@ -110,7 +110,6 @@ body:
         - [ ] Make sure that the package is published to internal repositories.
         - [ ] Make sure internal documentation is up to date.
         - [ ] Review and update installation instructions for the package wherever needed (Optional).
-        - [ ] Update all integration tests to reference the new release.
         - [ ] Announce the release on ________.
   - type: textarea
     id: decision-tree
