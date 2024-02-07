@@ -13,7 +13,6 @@ on:
       - main
     paths:
       - .github/ISSUE_TEMPLATE/release.yml
-      # TODO also for cran-release.yml?
       - .github/ISSUE_TEMPLATE/cran-release.yml
   workflow_dispatch:
 
@@ -24,73 +23,86 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PR_BRANCH_NAME: automated-release-template-propagation
+      DEFAULT_TARGET_BRANCH: main
+      DEFAULT_REVIEWERS: |-
+        insightsengineering/idr
     strategy:
       matrix:
         # Run all steps in this job for the following repositories.
         repos:
+          # All possible options are:
+          # - name: <repository-name-in-current-organization>
+          #   files-to-propagate: '<list-of-files-to-propagate>'
+          #   # If target-branch not specified, main is used.
+          #   target-branch: <to-which-branch-should-the-files-be-propagated>
+          #   # If reviewers not specified, 'insightsengineering/idr' is used.
+          #   reviewers: |-
+          #     <username-or-team-name-1>
+          #     <username-or-team-name-2>
+          #     ...
           - name: junit-xml-diff
-            target-branch: main
             files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
-            reviewers: |-
-              walkowif
-          # TODO add remaining repositories
-          # TODO will there be any case in which we'd like some team as a reviewer?
           - name: locksmith
-            target-branch: main
-            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml'
-            reviewers: |-
-              walkowif
-              cicdguy
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
           - name: scribe
-            target-branch: main
-            files-to-propagate: '.github/ISSUE_TEMPLATE/cran-release.yml'
-            reviewers: |-
-              walkowif
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
     steps:
+      - name: Normalize variables
+        run: |
+          target_branch_input="${{ matrix.repos.target-branch }}"
+          reviewers_input="${{ matrix.repos.reviewers }}"
+          echo "target_branch=${target_branch_input:-$DEFAULT_TARGET_BRANCH}" >> $GITHUB_ENV
+          echo "reviewers=${reviewers_input:-$DEFAULT_REVIEWERS}" >> $GITHUB_ENV
+
       - name: Checkout this repo
         uses: actions/checkout@v4
+        with:
+          path: ./origin-repo
 
       - name: Checkout ${{ matrix.repos.name }}
         uses: actions/checkout@v4
         with:
           repository: ${{ github.repository_owner }}/${{ matrix.repos.name }}
-          path: ./extension-repo
+          path: ./destination-repo
           token: ${{ secrets.REPO_GITHUB_TOKEN }}
 
-      - name: Update release template in ${{ matrix.repos.name }}
+      - name: Update propagated files in ${{ matrix.repos.name }}
         run: |
-          cd extension-repo && git status
+          echo "Propagating to branch ${{ env.target_branch }} with reviewers = '${{ env.reviewers }}'"
+          cd destination-repo && git status
 
           # We want to branch off PR_BRANCH_NAME from the target branch
           # so we switch to target branch first.
-          git fetch origin ${{ matrix.repos.target-branch }}
-          git checkout ${{ matrix.repos.target-branch }}
+          git fetch origin ${{ env.target-branch }}
+          git checkout ${{ env.target-branch }}
 
           # Update local branch if remote branch already exists.
-          git fetch origin $PR_BRANCH_NAME@${{ matrix.repos.target-branch }} || true
+          git fetch origin $PR_BRANCH_NAME@${{ env.target-branch }} || true
 
           # Switch to the branch or create if it doesn't exist.
-          git checkout $PR_BRANCH_NAME@${{ matrix.repos.target-branch }} || git checkout -b $PR_BRANCH_NAME@${{ matrix.repos.target-branch }}
+          git checkout $PR_BRANCH_NAME@${{ env.target-branch }} || git checkout -b $PR_BRANCH_NAME@${{ env.target-branch }}
 
           # Pull the branch because stefanzweifel/git-auto-commit-action
           # doesn't have support for automatic pulling.
-          git pull origin $PR_BRANCH_NAME@${{ matrix.repos.target-branch }} || true
+          git pull origin $PR_BRANCH_NAME@${{ env.target-branch }} || true
 
-          # Copy release template from central repo.
-          mkdir -p .github/ISSUE_TEMPLATE
-          # TODO also cran-release.yml?
-          # TODO Should this be parametrizable?
-          cp -a ../.github/ISSUE_TEMPLATE/* .github/ISSUE_TEMPLATE
+          # Copy files to propagate from origin repo.
+          cd ..
+          for name in ${{ matrix.repos.files-to-propagate }}; do
+            mkdir -p destination-repo/$(dirname $name)
+            echo
+            cp origin-repo/$name destination-repo/$name
+          done
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: Propagate release template from ${{ github.repository }}
+          commit_message: Propagate files from ${{ github.repository }}
           file_pattern: ${{ matrix.repos.files-to-propagate }}
-          repository: extension-repo
+          repository: destination-repo
           commit_user_name: github-actions
           commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
-          branch: ${{ env.PR_BRANCH_NAME }}@${{ matrix.repos.target-branch }}
+          branch: ${{ env.PR_BRANCH_NAME }}@${{ env.target-branch }}
           create_branch: true
 
       - name: Create Pull Request in ${{ matrix.repos.name }}
@@ -109,30 +121,30 @@ jobs:
             let create_new_pr = true;
             for (const pr of result.data) {
               // Look for distinct PR branch name.
-              if (pr.head.ref === "${{ env.PR_BRANCH_NAME }}@${{ matrix.repos.target-branch }}") {
+              if (pr.head.ref === "${{ env.PR_BRANCH_NAME }}@${{ env.target-branch }}") {
                 console.log("PR with head ref " + pr.head.ref + " already exists");
                 create_new_pr = false;
                 break;
               }
             }
             // If no PR with distinguished branch name has been found
-            // create a new PR to track changes to release template.
+            // create a new PR to track changes to propagated files.
             if (create_new_pr) {
               console.log("Creating a new PR");
               const result2 = await github.rest.pulls.create({
-                title: 'Propagate release template from ${{ github.repository }}',
+                title: 'Propagate files from ${{ github.repository }}',
                 owner: repo_owner,
                 repo: repo_name,
-                head: '${{ env.PR_BRANCH_NAME }}@${{ matrix.repos.target-branch }}',
-                base: '${{ matrix.repos.target-branch }}',
+                head: '${{ env.PR_BRANCH_NAME }}@${{ env.target-branch }}',
+                base: '${{ env.target-branch }}',
                 body: [
                   'This PR has been automatically generated by the ',
-                  'release template propagation workflow from ${{ github.repository }}.',
+                  'file propagation workflow from ${{ github.repository }}.',
                   '\n\nPlease review the changes.'
                 ].join('')
               });
               // Assign reviewers to the PR.
-              const reviewer_list = `${{ matrix.repos.reviewers }}`.split("\n");
+              const reviewer_list = `${{ env.reviewers }}`.split("\n");
               console.log(reviewer_list);
               const result3 = await github.rest.pulls.requestReviewers({
                 owner: repo_owner,
