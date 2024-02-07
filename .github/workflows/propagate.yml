@@ -25,7 +25,7 @@ jobs:
       PR_BRANCH_NAME: automated-release-template-propagation
       DEFAULT_TARGET_BRANCH: main
       DEFAULT_REVIEWERS: |-
-        insightsengineering/idr
+        @insightsengineering/idr
     strategy:
       matrix:
         # Run all steps in this job for the following repositories.
