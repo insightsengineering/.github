@@ -7,6 +7,7 @@ on:
       - main
     paths:
       - .github/ISSUE_TEMPLATE/release.yml
+      # TODO also for cran-release.yml?
   workflow_dispatch:
 
 jobs:
@@ -24,6 +25,7 @@ jobs:
             target-branch: main
             reviewers: |-
               walkowif
+          # TODO add remaining repositories
           # - name: <name>
           #   target-branch: main
           #   reviewers: |-
@@ -51,19 +53,20 @@ jobs:
           # Update local branch if remote branch already exists.
           git fetch origin $PR_BRANCH_NAME@${{ matrix.repos.target-branch }} || true
 
-          # Switch to the branch or create if doesn't exist
+          # Switch to the branch or create if it doesn't exist.
           git checkout $PR_BRANCH_NAME@${{ matrix.repos.target-branch }} || git checkout -b $PR_BRANCH_NAME@${{ matrix.repos.target-branch }}
 
           # Pull the branch because stefanzweifel/git-auto-commit-action
           # doesn't have support for automatic pulling.
           git pull origin $PR_BRANCH_NAME@${{ matrix.repos.target-branch }} || true
 
-          # Copy release template from central repo
+          # Copy release template from central repo.
           mkdir -p .github/ISSUE_TEMPLATE
+          # TODO also cran-release.yml?
           cp ../.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE
 
       - name: Commit and push changes
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Propagate release template from ${{ github.repository }}
           file_pattern: '.github/ISSUE_TEMPLATE/*'
