@@ -8,6 +8,7 @@ on:
     paths:
       - .github/ISSUE_TEMPLATE/release.yml
       # TODO also for cran-release.yml?
+      - .github/ISSUE_TEMPLATE/cran-release.yml
   workflow_dispatch:
 
 jobs:
@@ -23,9 +24,11 @@ jobs:
         repos:
           - name: junit-xml-diff
             target-branch: main
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
             reviewers: |-
               walkowif
           # TODO add remaining repositories
+          # TODO will there be any case in which we'd like some team as a reviewer?
           # - name: <name>
           #   target-branch: main
           #   reviewers: |-
@@ -63,13 +66,13 @@ jobs:
           # Copy release template from central repo.
           mkdir -p .github/ISSUE_TEMPLATE
           # TODO also cran-release.yml?
-          cp ../.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE
+          cp -a ../.github/ISSUE_TEMPLATE/* .github/ISSUE_TEMPLATE
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Propagate release template from ${{ github.repository }}
-          file_pattern: '.github/ISSUE_TEMPLATE/*'
+          file_pattern: ${{ matrix.repos.name.files-to-propagate }}
           repository: extension-repo
           commit_user_name: github-actions
           commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
