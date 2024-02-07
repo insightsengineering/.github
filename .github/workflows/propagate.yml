@@ -1,6 +1,12 @@
 ---
 name: Propagate release templates
 
+# Whenever a PR with changes to the release templates is created in this repo,
+# this workflow will create a branch and an associated PR in each of the
+# repositories defined in the matrix.
+# The branches and PRs will contain the changes to the release templates, so that
+# their contents will be the same as in this repository.
+
 on:
   pull_request:
     branches:
