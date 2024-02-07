@@ -25,7 +25,7 @@ jobs:
       PR_BRANCH_NAME: automated-release-template-propagation
       DEFAULT_TARGET_BRANCH: main
       DEFAULT_REVIEWERS: |-
-        @insightsengineering/idr
+        KlaudiaBB
     strategy:
       matrix:
         # Run all steps in this job for the following repositories.
@@ -33,12 +33,12 @@ jobs:
           # All possible options are:
           # - name: <repository-name-in-current-organization>
           #   files-to-propagate: '<list-of-files-to-propagate>'
-          #   # If target-branch not specified, main is used.
+          #   # If target-branch not specified, DEFAULT_TARGET_BRANCH is used.
           #   target-branch: <to-which-branch-should-the-files-be-propagated>
-          #   # If reviewers not specified, 'insightsengineering/idr' is used.
+          #   # If reviewers not specified, DEFAULT_REVIEWERS is used.
           #   reviewers: |-
-          #     <username-or-team-name-1>
-          #     <username-or-team-name-2>
+          #     <username-1>
+          #     <username-2>
           #     ...
           - name: junit-xml-diff
             files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
