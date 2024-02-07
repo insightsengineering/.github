@@ -29,16 +29,23 @@ jobs:
               walkowif
           # TODO add remaining repositories
           # TODO will there be any case in which we'd like some team as a reviewer?
-          # - name: <name>
-          #   target-branch: main
-          #   reviewers: |-
-          #     walkowif
+          - name: locksmith
+            target-branch: main
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml'
+            reviewers: |-
+              walkowif
+              cicdguy
+          - name: scribe
+            target-branch: main
+            files-to-propagate: '.github/ISSUE_TEMPLATE/cran-release.yml'
+            reviewers: |-
+              walkowif
     steps:
       - name: Checkout this repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Checkout ${{ matrix.repos.name }}
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: ${{ github.repository_owner }}/${{ matrix.repos.name }}
           path: ./extension-repo
@@ -66,6 +73,7 @@ jobs:
           # Copy release template from central repo.
           mkdir -p .github/ISSUE_TEMPLATE
           # TODO also cran-release.yml?
+          # TODO Should this be parametrizable?
           cp -a ../.github/ISSUE_TEMPLATE/* .github/ISSUE_TEMPLATE
 
       - name: Commit and push changes
