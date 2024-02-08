@@ -126,14 +126,14 @@ jobs:
         with:
           path: ./origin-repo
 
-      - name: Checkout ${{ matrix.repos.name }}
+      - name: Checkout ${{ matrix.repos.name }} repository
         uses: actions/checkout@v4
         with:
           repository: ${{ github.repository_owner }}/${{ matrix.repos.name }}
           path: ./destination-repo
           token: ${{ secrets.REPO_GITHUB_TOKEN }}
 
-      - name: Update propagated files in ${{ matrix.repos.name }}
+      - name: Update propagated files in ${{ matrix.repos.name }} repository
         run: |
           echo "Propagating to branch ${{ env.target_branch }} with reviewers = '${{ env.reviewers }}'"
           cd destination-repo && git status
@@ -172,7 +172,7 @@ jobs:
           branch: ${{ env.PR_BRANCH_NAME }}@${{ env.target_branch }}
           create_branch: true
 
-      - name: Create Pull Request in ${{ matrix.repos.name }}
+      - name: Create Pull Request in ${{ matrix.repos.name }} repository
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.REPO_GITHUB_TOKEN }}
