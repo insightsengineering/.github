@@ -97,7 +97,7 @@ jobs:
           # - name: teal.data
           #   files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
           # - name: teal.modules.general
-          #   files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml'
+          #   files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
           # - name: scda
           #   files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml'
           # - name: teal
