@@ -61,7 +61,7 @@ jobs:
           # - name: random.cdisc.data
           #   files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml'
           # - name: teal.transform
-          #   files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml'
+          #   files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
           # - name: rlistings
           #   files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
           # - name: dunlin
