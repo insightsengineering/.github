@@ -48,10 +48,6 @@ jobs:
             files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
 
 
-          # - name: hermes
-          #   files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml'
-          # - name: ggplot2.utils
-          #   files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml'
           # - name: teal.logger
           #   files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
           # - name: tern.mmrm
@@ -78,8 +74,6 @@ jobs:
           #   files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml'
           # - name: tern.rbmi
           #   files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml'
-          # - name: simIDM
-          #   files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml'
           # - name: tern.gee
           #   files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
           # - name: formatters
@@ -96,16 +90,12 @@ jobs:
           #   files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
           # - name: rtables
           #   files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
-          # - name: teal.modules.hermes
-          #   files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml'
           # - name: teal.goshawk
           #   files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml'
           # - name: teal.slice
           #   files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
           # - name: teal.data
           #   files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
-          # - name: verdepcheck
-          #   files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml'
           # - name: teal.modules.general
           #   files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml'
           # - name: scda
