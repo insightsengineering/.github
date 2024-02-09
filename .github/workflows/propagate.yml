@@ -148,7 +148,7 @@ jobs:
             echo "Copying origin-repo/$name to destination-repo/$name"
             cp origin-repo/$name destination-repo/$name
           done
-          rm destination-repo/.github/ISSUE_TEMPLATE/release.yaml destination-repo/.github/ISSUE_TEMPLATE/cran-release.yaml
+          rm -f destination-repo/.github/ISSUE_TEMPLATE/release.yaml destination-repo/.github/ISSUE_TEMPLATE/cran-release.yaml
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
