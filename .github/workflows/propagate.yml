@@ -145,16 +145,12 @@ jobs:
             echo "Copying origin-repo/$name to destination-repo/$name"
             cp origin-repo/$name destination-repo/$name
           done
-          # TODO remove this line
-          rm -f destination-repo/.github/ISSUE_TEMPLATE/release.yaml destination-repo/.github/ISSUE_TEMPLATE/cran-release.yaml
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: '[skip ci] Propagate files from ${{ github.repository }}'
-          # TODO restore this pattern
-          # file_pattern: ${{ matrix.repos.files-to-propagate }}
-          file_pattern: '.github/ISSUE_TEMPLATE/*'
+          file_pattern: ${{ matrix.repos.files-to-propagate }}
           repository: destination-repo
           commit_user_name: github-actions
           commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
@@ -162,7 +158,7 @@ jobs:
           create_branch: true
 
       - name: Sleep to avoid rate limiting
-        run: sleep $((RANDOM % 20))
+        run: sleep $((RANDOM % 300))
         shell: bash
 
       - name: Create and merge PR in ${{ matrix.repos.name }} repository
