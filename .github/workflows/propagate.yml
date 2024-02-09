@@ -205,14 +205,6 @@ jobs:
                 pull_number: result2.data.number,
                 reviewers: reviewer_list
               });
-              // Approve the PR.
-              console.log("Approving the PR...")
-              await github.rest.pulls.createReview({
-                owner: repo_owner,
-                repo: repo_name,
-                pull_number: result2.data.number,
-                event: 'APPROVE',
-              });
               // Merge the PR.
               console.log("Merging the PR...")
               await github.rest.pulls.merge({
