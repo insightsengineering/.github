@@ -19,7 +19,6 @@ on:
 
 jobs:
   propagation:
-    if: github.event.pull_request.draft == false
     name: Propagate release templates
     runs-on: ubuntu-latest
     env:
