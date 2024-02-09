@@ -211,5 +211,6 @@ jobs:
                 owner: repo_owner,
                 repo: repo_name,
                 pull_number: result2.data.number,
+                merge_method: 'squash',
               });
             }
