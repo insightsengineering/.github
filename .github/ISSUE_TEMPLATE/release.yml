@@ -69,6 +69,7 @@ body:
         - [ ] Monitor integration tests, if integration fails, create priority issues on the board.
         - [ ] Execute UAT tests (Optional).
 
+
         #### Validation loop
 
         **Note:** This section is applicable only for regulatory packages.
