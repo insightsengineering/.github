@@ -98,6 +98,8 @@ jobs:
           #   files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml'
           # - name: teal
           #   files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
+          # - name: cards
+          #   files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml'
 
     steps:
       - name: Normalize variables
