@@ -40,8 +40,6 @@ jobs:
           #     <username-1>
           #     <username-2>
           #     ...
-          - name: gexodus
-            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
           # - name: teal.logger
           #   files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
           # - name: tern.mmrm
@@ -158,7 +156,7 @@ jobs:
           branch: ${{ env.PR_BRANCH_NAME }}@${{ env.target_branch }}
           create_branch: true
 
-      - name: Create Pull Request in ${{ matrix.repos.name }} repository
+      - name: Create and merge PR in ${{ matrix.repos.name }} repository
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.REPO_GITHUB_TOKEN }}
