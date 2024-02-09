@@ -40,6 +40,8 @@ jobs:
           #     <username-1>
           #     <username-2>
           #     ...
+          - name: gexodus
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
           # - name: teal.logger
           #   files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
           # - name: tern.mmrm
@@ -148,7 +150,7 @@ jobs:
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: Propagate files from ${{ github.repository }}
+          commit_message: '[skip ci] Propagate files from ${{ github.repository }}'
           file_pattern: ${{ matrix.repos.files-to-propagate }}
           repository: destination-repo
           commit_user_name: github-actions
