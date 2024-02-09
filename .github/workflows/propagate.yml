@@ -161,7 +161,7 @@ jobs:
           commit_message: '[skip ci] Propagate files from ${{ github.repository }}'
           # TODO restore this pattern
           # file_pattern: ${{ matrix.repos.files-to-propagate }}
-          file_pattern: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml .github/ISSUE_TEMPLATE/release.yaml .github/ISSUE_TEMPLATE/cran-release.yaml'
+          file_pattern: '.github/ISSUE_TEMPLATE/*'
           repository: destination-repo
           commit_user_name: github-actions
           commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
