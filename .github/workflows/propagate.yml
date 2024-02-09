@@ -9,7 +9,7 @@ name: Propagate release templates
 # All these PRs will get automatically merged.
 
 on:
-  pull_request:
+  push:
     branches:
       - main
     paths:
