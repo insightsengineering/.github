@@ -1,0 +1,218 @@
+---
+name: Propagate release templates
+
+# Whenever a PR with changes to the release templates is merged to main in this repo,
+# this workflow will create a branch and an associated PR in each of the
+# repositories defined in the matrix.
+# The branches and PRs will contain the same changes to the release templates, so that
+# their contents will be the same as in this repository.
+# All these PRs will get automatically merged.
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/ISSUE_TEMPLATE/release.yml
+      - .github/ISSUE_TEMPLATE/cran-release.yml
+  workflow_dispatch:
+
+jobs:
+  propagation:
+    name: Propagate release templates
+    runs-on: ubuntu-latest
+    env:
+      PR_BRANCH_NAME: automated-release-template-propagation
+      DEFAULT_TARGET_BRANCH: main
+      DEFAULT_REVIEWERS: |-
+        KlaudiaBB
+    strategy:
+      matrix:
+        # Run all steps in this job for the following repositories.
+        repos:
+          # All possible options are:
+          # - name: <repository-name-in-current-organization>
+          #   files-to-propagate: '<list-of-files-to-propagate>'
+          #   # If target-branch not specified, DEFAULT_TARGET_BRANCH is used.
+          #   target-branch: <to-which-branch-should-the-files-be-propagated>
+          #   # If reviewers not specified, DEFAULT_REVIEWERS is used.
+          #   reviewers: |-
+          #     <username-1>
+          #     <username-2>
+          #     ...
+
+          - name: teal.logger
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
+          - name: tern.mmrm
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
+          - name: osprey
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml'
+          - name: goshawk
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml'
+          - name: tern
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
+          - name: random.cdisc.data
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml'
+          - name: teal.transform
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
+          - name: rlistings
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
+          - name: dunlin
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
+          - name: teal.modules.clinical
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
+          - name: teal.widgets
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
+          - name: scda.2022
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml'
+          - name: tern.rbmi
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml'
+          - name: tern.gee
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
+          - name: formatters
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
+          - name: chevron
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
+          - name: teal.osprey
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml'
+          - name: teal.reporter
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
+          - name: nestcolor
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
+          - name: teal.code
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
+          - name: rtables
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
+          - name: teal.goshawk
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml'
+          - name: teal.slice
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
+          - name: teal.data
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
+          - name: teal.modules.general
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
+          - name: scda
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml'
+          - name: teal
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml .github/ISSUE_TEMPLATE/cran-release.yml'
+          - name: cards
+            files-to-propagate: '.github/ISSUE_TEMPLATE/release.yml'
+
+    steps:
+      - name: Normalize variables
+        run: |
+          target_branch_input="${{ matrix.repos.target-branch }}"
+          reviewers_input="${{ matrix.repos.reviewers }}"
+          echo "target_branch=${target_branch_input:-$DEFAULT_TARGET_BRANCH}" >> $GITHUB_ENV
+          echo "reviewers=${reviewers_input:-$DEFAULT_REVIEWERS}" >> $GITHUB_ENV
+
+      - name: Checkout this repo
+        uses: actions/checkout@v4
+        with:
+          path: ./origin-repo
+
+      - name: Checkout ${{ matrix.repos.name }} repository
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository_owner }}/${{ matrix.repos.name }}
+          path: ./destination-repo
+          token: ${{ secrets.REPO_GITHUB_TOKEN }}
+
+      - name: Update propagated files in ${{ matrix.repos.name }} repository
+        run: |
+          echo "Propagating to branch ${{ env.target_branch }} with reviewers = '${{ env.reviewers }}'"
+          cd destination-repo && git status
+
+          # We want to branch off PR_BRANCH_NAME from the target branch
+          # so we switch to target branch first.
+          git fetch origin ${{ env.target_branch }}
+          git checkout ${{ env.target_branch }}
+
+          # Update local branch if remote branch already exists.
+          git fetch origin $PR_BRANCH_NAME@${{ env.target_branch }} || true
+
+          # Switch to the branch or create if it doesn't exist.
+          git checkout $PR_BRANCH_NAME@${{ env.target_branch }} || git checkout -b $PR_BRANCH_NAME@${{ env.target_branch }}
+
+          # Pull the branch because stefanzweifel/git-auto-commit-action
+          # doesn't have support for automatic pulling.
+          git pull origin $PR_BRANCH_NAME@${{ env.target_branch }} || true
+
+          # Copy files to propagate from origin repo.
+          cd ..
+          for name in ${{ matrix.repos.files-to-propagate }}; do
+            mkdir -p destination-repo/$(dirname $name)
+            echo "Copying origin-repo/$name to destination-repo/$name"
+            cp origin-repo/$name destination-repo/$name
+          done
+
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: '[skip ci] Propagate files from ${{ github.repository }}'
+          file_pattern: ${{ matrix.repos.files-to-propagate }}
+          repository: destination-repo
+          commit_user_name: github-actions
+          commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
+          branch: ${{ env.PR_BRANCH_NAME }}@${{ env.target_branch }}
+          create_branch: true
+
+      - name: Sleep to avoid rate limiting
+        run: sleep $((RANDOM % 300))
+        shell: bash
+
+      - name: Create and merge PR in ${{ matrix.repos.name }} repository
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.REPO_GITHUB_TOKEN }}
+          script: |
+            // Look for any open PRs.
+            const repo_owner = "${{ github.repository_owner }}";
+            const repo_name = "${{ matrix.repos.name }}";
+            const result = await github.rest.pulls.list({
+              owner: repo_owner,
+              repo: repo_name,
+              state: "open"
+            })
+            let create_new_pr = true;
+            for (const pr of result.data) {
+              // Look for distinct PR branch name.
+              if (pr.head.ref === "${{ env.PR_BRANCH_NAME }}@${{ env.target_branch }}") {
+                console.log("PR with head ref " + pr.head.ref + " already exists");
+                create_new_pr = false;
+                break;
+              }
+            }
+            // If no PR with distinguished branch name has been found
+            // create a new PR to track changes to propagated files.
+            if (create_new_pr) {
+              console.log("Creating a new PR");
+              const result2 = await github.rest.pulls.create({
+                title: '[skip actions] Propagate files from ${{ github.repository }}',
+                owner: repo_owner,
+                repo: repo_name,
+                head: '${{ env.PR_BRANCH_NAME }}@${{ env.target_branch }}',
+                base: '${{ env.target_branch }}',
+                body: [
+                  'This PR has been automatically generated by the ',
+                  'file propagation workflow from ${{ github.repository }}.'
+                ].join('')
+              });
+              // Assign reviewers to the PR.
+              const reviewer_list = `${{ env.reviewers }}`.split("\n");
+              console.log(reviewer_list);
+              const result3 = await github.rest.pulls.requestReviewers({
+                owner: repo_owner,
+                repo: repo_name,
+                pull_number: result2.data.number,
+                reviewers: reviewer_list
+              });
+              // Merge the PR.
+              console.log("Merging the PR...")
+              await github.rest.pulls.merge({
+                owner: repo_owner,
+                repo: repo_name,
+                pull_number: result2.data.number,
+                merge_method: 'squash',
+              });
+            }
