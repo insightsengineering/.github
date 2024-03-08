@@ -32,11 +32,11 @@ jobs:
           create-file-commit-message: '🛠 Init CLA Signatures'
           remote-organization-name: ${{ github.repository_owner }}
           remote-repository-name: .github-private
-          signed-commit-message: '✍️ CLA signed by $contributorName in ${{ env.GITHUB_REPOSITORY }} in PR #$pullRequestNo'
+          signed-commit-message: '✍️ CLA signed by $contributorName in ${{ env.GITHUB_REPOSITORY }}'
           custom-allsigned-prcomment: '✅ All contributors have signed the CLA'
           custom-notsigned-prcomment: >-
             <br/>
-            🎉 Thank you for your contribution! Before this PR can be accepted, we require that $you read and agree to our [Contributor License Agreement](${input.getPathToDocument()}).
+            🎉 Thank you for your contribution! Before this PR can be accepted, we require that $you read and agree to our [Contributor License Agreement](https://github.com/insightsengineering/.github/blob/main/CLA.md).
             <br/>
             You can digitally sign the CLA by posting a comment on this Pull Request in the format shown below. This agreement will apply to this PR _as well as_ all future contributions on this repository.
             <br/>
