@@ -32,7 +32,7 @@ jobs:
           create-file-commit-message: '🛠 Init CLA Signatures'
           remote-organization-name: ${{ github.repository_owner }}
           remote-repository-name: .github-private
-          signed-commit-message: '✍️ CLA signed by $contributorName in ${{ env.GITHUB_REPOSITORY }}'
+          signed-commit-message: '✍️ CLA signed by $contributorName in ${{ github.repository_owner }}/${{ github.repository }}'
           custom-allsigned-prcomment: '✅ All contributors have signed the CLA'
           custom-notsigned-prcomment: >-
             <br/>
