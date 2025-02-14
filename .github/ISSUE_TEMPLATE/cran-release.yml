@@ -74,7 +74,7 @@ body:
         #### CRAN submission
         - [ ] Build the package locally using the command:`R CMD build .` which will generate a .tar.gz file necessary for the CRAN submission.
         - [ ] Submit the package to https://win-builder.r-project.org/upload.aspx for testing, for more details please see "Building and checking R source packages for Windows": https://win-builder.r-project.org/.
-        - [ ] Once tested,Tag the update(s) as a release candidate vX.Y.Z-rc<iteration-number> (e.g. v0.5.3-rc1) on the release candidate branch (release-candidate-vX.Y.Z).
+        - [ ] Once tested, tag the update(s) as a release candidate vX.Y.Z-rc<iteration-number> (e.g. v0.5.3-rc1) on the release candidate branch (release-candidate-vX.Y.Z).
           ```r
           # Create rc tag for submission for internal validation
           git tag vX.Y.Z-rc<iteration number>
