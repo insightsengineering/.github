@@ -35,7 +35,8 @@ jobs:
             dependabot[bot],
             copilot,
             github-copilot[bot],
-            copilot[bot]
+            copilot[bot],
+            Copilot
           create-file-commit-message: '🛠 Init CLA Signatures'
           remote-organization-name: ${{ github.repository_owner }}
           remote-repository-name: .github-private
