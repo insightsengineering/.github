@@ -28,7 +28,14 @@ jobs:
           path-to-signatures: ${{ github.repository }}/cla.json
           path-to-document: https://github.com/${{ github.repository_owner }}/.github/blob/main/CLA.md
           branch: cla-signatures
-          allowlist: github-actions[bot],dependabot-preview[bot],insights-engineering-bot,dependabot[bot],copilot
+          allowlist: >-
+            github-actions[bot],
+            dependabot-preview[bot],
+            insights-engineering-bot,
+            dependabot[bot],
+            copilot,
+            github-copilot[bot],
+            copilot[bot]
           create-file-commit-message: '🛠 Init CLA Signatures'
           remote-organization-name: ${{ github.repository_owner }}
           remote-repository-name: .github-private
