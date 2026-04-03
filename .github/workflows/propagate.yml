@@ -109,12 +109,12 @@ jobs:
           echo "reviewers=${reviewers_input:-$DEFAULT_REVIEWERS}" >> $GITHUB_ENV
 
       - name: Checkout this repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
           path: ./origin-repo
 
       - name: Checkout ${{ matrix.repos.name }} repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
           repository: ${{ github.repository_owner }}/${{ matrix.repos.name }}
           path: ./destination-repo
@@ -149,7 +149,7 @@ jobs:
           done
 
       - name: Commit and push changes
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@b863ae1933cb653a53c021fe36dbb774e1fb9403 # v5
         with:
           commit_message: '[skip ci] Propagate files from ${{ github.repository }}'
           file_pattern: ${{ matrix.repos.files-to-propagate }}
@@ -164,7 +164,7 @@ jobs:
         shell: bash
 
       - name: Create and merge PR in ${{ matrix.repos.name }} repository
-        uses: actions/github-script@v7
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
         with:
           github-token: ${{ secrets.REPO_GITHUB_TOKEN }}
           script: |
