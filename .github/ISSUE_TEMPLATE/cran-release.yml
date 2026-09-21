@@ -4,8 +4,8 @@ description: Template for release to CRAN
 title: "[CRAN Release]: <version>"
 labels: ["release"]
 assignees:
-  - KlaudiaBB
-  - cicdguy
+  - donyunardi
+  - llrs-roche
 body:
   - type: markdown
     attributes:
@@ -56,7 +56,7 @@ body:
         - [ ] Make sure that the minimum dependency versions are updated in the DESCRIPTION file for the package and its reverse dependencies (Optional).
           - [ ] Increase versioned dependency on {package name} to >=X.Y.Z (Optional).
         - [ ] Commit your changes and create the PR on GitHub (add "[skip vbump]" in the PR title). Add all updates, commit, and push changes:
-          ```r
+          ```
           # Make the necessary modifications to your files
           # Stage the changes
           git add <files your modified>
@@ -75,7 +75,7 @@ body:
         - [ ] Build the package locally using the command:`R CMD build .` which will generate a .tar.gz file necessary for the CRAN submission.
         - [ ] Submit the package to https://win-builder.r-project.org/upload.aspx for testing, for more details please see "Building and checking R source packages for Windows": https://win-builder.r-project.org/.
         - [ ] Once tested, tag the update(s) as a release candidate vX.Y.Z-rc<iteration-number> (e.g. v0.5.3-rc1) on the release candidate branch (release-candidate-vX.Y.Z).
-          ```r
+          ```
           # Create rc tag for submission for internal validation
           git tag vX.Y.Z-rc<iteration number>
           git push origin vX.Y.Z-rc<iteration number>
