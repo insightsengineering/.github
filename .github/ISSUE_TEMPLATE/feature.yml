@@ -4,9 +4,8 @@ description: Request or propose a new feature
 title: "[Feature Request]: <title>"
 labels: ["enhancement"]
 assignees:
-  - cicdguy
-  - pawelru
   - donyunardi
+  - llrs-roche
 body:
   - type: textarea
     attributes:

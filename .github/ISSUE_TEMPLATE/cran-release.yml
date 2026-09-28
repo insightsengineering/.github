@@ -4,8 +4,7 @@ description: Template for release to CRAN
 title: "[CRAN Release]: <version>"
 labels: ["release"]
 assignees:
-  - KlaudiaBB
-  - cicdguy
+  - llrs-roche
 body:
   - type: markdown
     attributes:

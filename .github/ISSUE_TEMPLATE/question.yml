@@ -3,10 +3,6 @@ name: ❓ Question
 description: Question about usage or documentation
 title: "[Question]: <title>"
 labels: ["question"]
-assignees:
-  - cicdguy
-  - pawelru
-  - donyunardi
 body:
   - type: textarea
     attributes:
