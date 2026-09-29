@@ -5,6 +5,7 @@ title: "[Release]: <version>"
 labels: ["release"]
 assignees:
   - llrs-roche
+  - Melkiades
 body:
   - type: markdown
     attributes:
