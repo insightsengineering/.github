@@ -4,8 +4,8 @@ description: Template for package release
 title: "[Release]: <version>"
 labels: ["release"]
 assignees:
-  - KlaudiaBB
-  - cicdguy
+  - llrs-roche
+  - Melkiades
 body:
   - type: markdown
     attributes:

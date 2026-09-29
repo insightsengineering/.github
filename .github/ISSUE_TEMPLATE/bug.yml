@@ -4,9 +4,9 @@ description: File a bug report
 title: "[Bug]: <title>"
 labels: ["bug"]
 assignees:
-  - cicdguy
-  - pawelru
   - donyunardi
+  - llrs-roche
+  - Melkiades
 body:
   - type: markdown
     attributes:
